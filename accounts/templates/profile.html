@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs" data-aos="fade-in">
+        <div class="container">
+            <h2>Profile</h2>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+    <!-- ======= Profile Section ======= -->
+    <section class="d-flex justify-content-center align-items-center">
+        <div class="container position-relative" data-aos="fade" data-aos-delay="100">
+
+            <ul class="list-group">
+                <li class="list-group-item">{{ user.get_full_name }}</li>
+                <li class="list-group-item">{{ user.email }}</li>
+            </ul>
+        </div>
+    </section>
+    <!-- End Profile -->
+    <!-- ======= Profile Section ======= -->
+    <section class="d-flex justify-content-center align-items-center">
+        <div class="container position-relative" data-aos="fade" data-aos-delay="100">
+            <h3>Enrollments</h3>
+            {% if enrollments %}
+                {% for enrollment in enrollments %}
+                    <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="{{ enrollment.course.thumbnail }}" alt="{{ enrollment.course }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ enrollment.course }}</h5>
+                            <p class="card-text">{{ enrollment.course.description }}</p>
+                            <a href="{% url 'course:access'  enrollment.course.pk %}" class="btn btn-primary">Learn</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No course enrolled</p>
+            {% endif %}
+        </div>
+    </section>
+    <!-- End Profile -->
+{% endblock content %}

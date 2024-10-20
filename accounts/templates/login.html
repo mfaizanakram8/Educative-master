@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs" data-aos="fade-in">
+        <div class="container">
+            <h2>Login</h2>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+    <div class='container' data-aos='fade-up' style="margin-top: 5px;">
+        {% if form.errors %}
+            <p style="color: #fd2d2d"> Username or Password is invalid!</p>
+        {% endif %}
+        <div class="form-group">
+            <form method="post">
+                {% csrf_token %}
+                <p>
+                    <label for="id_username">Email: </label>
+                    <input type="email" name="username" maxlength="128" class="form-control" required=""
+                           id="id_username">
+                </p>
+
+                <p>
+                    <label for="id_password">Password: </label>
+                    <input type="password" name="password" maxlength="128" class="form-control" required=""
+                           id="id_password">
+                </p>
+                <button type="submit" class="btn btn-warning">Login</button>
+            </form>
+        </div>
+
+        <p> New user? <a href="{% url 'accounts:register' %}">Signup</a></p>
+
+    </div>
+{% endblock content %}
